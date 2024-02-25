@@ -1,0 +1,18 @@
+version: '3.9'
+services:
+##Postgres database for appointmentTypes
+  db-appointment-type:
+    image: postgres:latest
+    restart: unless-stopped
+    volumes:
+      - ./src/main/resources/db-data/:/var/lib/postgresql/data/
+      - ./src/main/resources/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      POSTGRES_DB: ms_i4digital
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Test123
+    ports:
+      - 5433:5433
+    expose:
+      - "5433"
+    command: -p 5433
